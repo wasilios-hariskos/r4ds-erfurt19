@@ -1,13 +1,13 @@
 # Erster Code
 x <- 3
 y <- 2
-x + y
+z <- x + y
 
 # Basics
 
 ## Zuweisung und Ausgabe einer Variablen
 
-(meine_variable <- 4)
+(meine_variable <- 4) # assign 4 to variable & print
 print(meine_variable)
 meine_variable
 
@@ -23,6 +23,7 @@ c <- 3
 a + b
 
 a + c
+sum(a, c)
 
 a - c
 
@@ -31,7 +32,7 @@ a * c
 a / b
 a / 0
 
-a^b
+a^b     # a to the power of b
 
 b %% a # modulo
 
@@ -67,6 +68,7 @@ v1 <- 1:5
 v2 <- c(2, 2, 3, 4, 5)
 c(2, 2:5)
 
+v3 <- -2:2
 ## Benennen
 
 some_vector <- c("John Doe", "poker player")
@@ -102,15 +104,19 @@ sum(FALSE, TRUE, TRUE, FALSE, TRUE, FALSE)
 
 sum(v3, v4)
 
-## Auswählen
+## Auswählen / subsetting
 
-v2[2]
+v2[1]
 v1[1] <- "a"
 v1
 v1[1] <- 1
 v1
 
+class(v1)
+
 class(as.numeric(v1))
+
+v1 <- as.numeric(v1)
 
 v2[2]
 v1[2]
@@ -125,6 +131,10 @@ v1[2:4]
 
 v1[v1 > 3]
 
+v1[v1 <= 3]
+
+v1[(v1 <= 3) == FALSE]
+
 ## Auswählen durch Vergleich
 
 x <- c(2, 5, 7)
@@ -136,7 +146,9 @@ x >= y
 
 x == y
 
-idx <- x != y
+x != y # unequal
+
+idx <- x != y # index
 
 x
 x[idx]
@@ -148,7 +160,7 @@ x[idx]
 help(matrix)
 
 matrix(data = 1:9, 
-       nrow = 3,
+       nrow = 3, 
        byrow = TRUE)
 
 matrix(1:9, 3, 3, TRUE)
@@ -164,7 +176,7 @@ my_matrix <- matrix(data = 1:9,
                     ncol = 3,
                     byrow = FALSE)
 
-?c
+?sum
 
 ## Benennen
 help(rownames)
@@ -199,9 +211,13 @@ v5 <- c(3, 5, 7)
 
 rbind(my_matrix, my_matrix, v5)
 
-cbind(my_matrix, my_matrix, c(1, 1, 1))
+#rbind(my_matrix[1,], v5, my_matrix[2:3,])
 
-rbind(my_matrix, my_matrix, c("3", "5", "7"))
+rbind(my_matrix, my_matrix, v5)
+
+cbind(my_matrix, c(1, 1, 1))
+
+rbind(my_matrix, c("3", "5", "7"))
 
 ## Auswählen
 
@@ -222,9 +238,9 @@ x
 
 ## Rechenoperationen
 
-my_matrix * my_matrix
+my_matrix * my_matrix  * my_matrix
 
-my_matrix ^ 2
+my_matrix ^ 3
 
 my_matrix + my_matrix
 
@@ -242,6 +258,7 @@ my_matrix %*% my_matrix
 ?factor
 
 sex_vector <- c("Male", "Female", "Female", "Male")
+class(sex_vector)
 
 factor(sex_vector)
 
@@ -285,6 +302,8 @@ levels(factor_gender) <- c("Female", "Male")
 
 factor_gender
 
+class(factor_gender)
+
 ## Kurzdarstellung
 
 summary(factor_temperature_vector)
@@ -307,6 +326,9 @@ head(mtcars)
 
 help(head)
 
+head(letters)
+head(letters, n = -24L)
+
 tail(mtcars)
 
 str(mtcars)
@@ -317,16 +339,18 @@ help(str)
 
 help("data.frame") # see example
 
-(L3 <- LETTERS[1:3])
+L3 <- LETTERS[1:3]
+L3
 
-(fac <- sample(L3, 10, replace = TRUE))
+fac <- sample(L3, 10, replace = TRUE)
+fac
 
 help(sample)
 
-(d <- data.frame(x = 1, # vector 1
-                 y = 1:10, # vector 2
-                 fac = fac)) # vector 3
-
+d <- data.frame(one = 1, # vector 1
+                ranking = 1:10, # vector 2
+                initial = fac) # vector 3
+d
 
 data.frame(1, ## The "same" with automatic column names
            1:10, 
@@ -339,15 +363,19 @@ d
 d[1, 2]
 d[1:3, 2:3]
 d[1, ]
-d[1:5, "fac"]
-d$fac
-d$y
+d[1:5, "initial"]
+d$initial
+d$one
 
 ## Subset: Untermengen bilden
 
 help(subset) # see examples
 
 str(airquality)
+help(airquality)
+
+head(airquality)
+tail(airquality)
 
 df1 <- subset(airquality, 
               Temp > 80, 
@@ -356,7 +384,7 @@ str(df1)
 
 df2 <- subset(airquality, 
               Day == 1, 
-              select = -Temp)
+              select = c(-Temp, -Solar.R))
 
 str(df2)
 
@@ -371,7 +399,7 @@ help("NA")
 
 help(order) # eigenes Beispiel
 
-v <- c(100, 10, 1000)
+v <- c(100, 10, 1000, 50)
 
 order(v) # was macht order
 
@@ -442,6 +470,8 @@ names(my_list) <- c("Numeric",
                     "Datensatz3")
 my_list
 
+my_list$Datensatz2
+
 ### Neue Liste
 
 my_list2 <- list(Numeric = vector1, # liste erstellen
@@ -469,6 +499,7 @@ my_list2[["Datensatz3"]]["Temp"]
 
 my_list2$Datensatz3
 my_list2$Datensatz3[4]
+my_list2$Datensatz3[[4]]
 
 ## Element hinzufügen
 
@@ -490,3 +521,5 @@ str(my_list4)
 sum(abs(c(-10, 5, -3)))^2 * 10
 
 help(abs)
+
+# anrechnung: forschungsfelder oder excel
