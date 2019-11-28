@@ -1,7 +1,7 @@
 ---
 title: "Data transformation with dplyr"
 author: "Wasilios Hariskos"
-date: "14 November 2019"
+date: "21 November 2019"
 output: slidy_presentation
 ---
 
@@ -57,7 +57,8 @@ gapminder %>%
 
 ```{r echo=TRUE}
 gapminder %>%
-  filter(country == "Germany", year >= 1982)
+  filter(country == "Germany", 
+         year >= 1982)
 ```
 
 # Sorting obsevations with arrange()
@@ -66,7 +67,8 @@ gapminder %>%
 
 ```{r echo=TRUE}
 gapminder %>%
-  filter(year == 1997, continent == "Europe") %>% 
+  filter(year == 1997, 
+         continent == "Europe") %>% 
   arrange(lifeExp) %>%
   print(n = 20)
 ```
@@ -77,7 +79,8 @@ gapminder %>%
 countries <- c("Germany", "Greece", "Portugal", "Spain", "Singapore", "Serbia", "India", "United States")
 
 gapminder %>%
-  filter(year == 1982, country %in% countries) %>% 
+  filter(year == 1982, 
+         country %in% countries) %>% 
   arrange(desc(lifeExp))
 ```
 
