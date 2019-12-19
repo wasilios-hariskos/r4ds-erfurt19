@@ -1,7 +1,7 @@
 ---
 title: "Data visualization with ggplot2"
 author: "Wasilios Hariskos"
-date: "21 November 2019"
+date: "05 December 2019"
 output: slidy_presentation
 ---
 

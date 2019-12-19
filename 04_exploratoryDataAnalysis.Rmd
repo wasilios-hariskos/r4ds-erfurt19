@@ -1,7 +1,7 @@
 ---
 title: "Exploratory data analysis with R"
 author: "Wasilios Hariskos"
-date: "28 November 2019"
+date: "19 December 2019"
 output: slidy_presentation
 ---
 
